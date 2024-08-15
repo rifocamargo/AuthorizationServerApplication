@@ -1,0 +1,31 @@
+server:
+  port: 9999
+  servlet:
+    session:
+      cookie:
+        name: SSO-SESSION
+  ssl:
+    enabled: true
+    key-alias: 1
+    key-store: /home/ricardocamargo/certificates/localhost.jks
+    key-store-password: lecom181
+    
+spring:
+  application:
+    name: sso-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/oauth2?createDatabaseIfNotExist=true&useSSL=false
+    username: root
+    password: lecom
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    schema: classpath:/script/schema.sql
+    data: classpath:/script/data.sql
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${DISCOVERY_SERVICE_URL:http://localhost:8761/eureka/}
+
+logging:
+  level:
+    org.springframework.security: DEBUG
